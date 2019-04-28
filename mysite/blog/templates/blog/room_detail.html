@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="room">
+        <h1>{{ room.number }}</h1>
+        <p>Тип номера : {{ room.room_type|linebreaksbr }}</p>
+        <p>Количество мест : {{ room.places|linebreaksbr }}</p>
+        <p>Статус: {{ room.status|linebreaksbr }}</p>
+        <p>Цена за ночь: {{ room.price|linebreaksbr }}</p>
+        <a class="btn btn-default" href="{% url 'room_remove' pk=room.pk %}">Удалить апартаменты</a>
+    </div>
+    <div class="room">
+        <a class="btn btn-default1" href="{% url 'room_edit' pk=room.pk %}">Редактировать информацию</a> </div>
+    <a class="btn btn-default2" href="{% url 'add_manager_to_room' pk=room.pk %}">Добавить менеджера к комнате</a>
+    <hr>
+{% for manager in room.manager.all %}
+    <div class="room">
+     Менеджер комнаты : <a class="btn btn-default1221" href="{% url 'manager_detail' pk=manager.pk %}">{{manager.manager_name}}</a>
+    </div>
+    <a class="btn btn-default" href="{% url 'manager_remove' pk=manager.pk %}">Удалить текущего менеджера</a>
+{% empty %}
+    <p>Добавьте, пожалуйста, менеджера комнаты!</p>
+{% endfor %}
+{% endblock %}

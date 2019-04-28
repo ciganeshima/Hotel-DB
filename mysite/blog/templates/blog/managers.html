@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for manager in managers %}
+        <div class="client">
+            <h1><a href="{% url 'manager_detail' pk=manager.pk %}">{{ manager.manager_name }}</a></h1>
+            <p>Работает в комнате : {{manager.room}}</p>
+        </div>
+    {% endfor %}
+    <hr>
+    <p><b>Самая большая</b> заработная плата у менеджера {{need.manager_name}} и составляет {{need.salary}} рублей</p>
+{% endblock %}

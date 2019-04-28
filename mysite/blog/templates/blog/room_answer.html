@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="room">
+        <h1>{{ room.number }}</h1>
+        <p>Тип номера : {{ room.room_type|linebreaksbr }}</p>
+        <p>Количество мест : {{ room.places|linebreaksbr }}</p>
+        <p>Статус: {{ room.status|linebreaksbr }}</p>
+        <p>Цена за ночь: {{ room.price|linebreaksbr }}</p>
+    </div>
+{% endblock %}

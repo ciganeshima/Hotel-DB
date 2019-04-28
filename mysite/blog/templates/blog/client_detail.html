@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="client">
+        <h1>{{ client.fio }}</h1>
+        <p>Паспортные данные : {{ client.pasport|linebreaksbr }}</p>
+        <p>Место регистрации : {{ client.reg_town|linebreaksbr }}</p>
+        <p>Контактный телефон : {{ client.telephone|linebreaksbr }}</p>
+        Пожелания и комментарии : 
+            <hr> 
+{% for comment in client.comments.all %}
+    <div class="client">
+        <div class="date">{{ comment.created_date }}</div>
+        <strong>{{ comment.topic }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+        <hr>
+    </div>
+{% empty %}
+    <p>У клиента пока нет пожеланий и комментариев </p>
+{% endfor %}
+    <a class="btn btn-default2" href="{% url 'add_comment_to_client' pk=client.pk %}">Добавить комментарий </a>
+    <br>
+        <a class="btn btn-default" href="{% url 'client_remove' pk=client.pk %}">Удалить клиента</a>
+    </div>
+    	<a class="btn btn-default1" href="{% url 'client_edit' pk=client.pk %}">Редактировать клиента</a>
+    </div>
+{% endblock %}

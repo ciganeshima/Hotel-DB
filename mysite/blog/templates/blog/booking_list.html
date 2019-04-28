@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	   <div id="header"><a href="{% url 'booking_new' %}" id="top-menu">Добавить заявку</a></div>
+	{% for booking in bookings %}
+        <div class="booking">
+        	<h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.number}}</a></h1>
+        <p>Тип номера : {{ booking.book_room_type|linebreaksbr }}</p>
+        <p>Количество мест : {{ booking.book_room_places|linebreaksbr }}</p>
+    {% empty %}
+    <p>Все заявки обработаны, спасибо!</p>
+        </div>
+    {% endfor %}
+    <hr>
+    <p><b>Всего заявок: </b>{{count_bookings}} </p>
+    <p><b>Количество заявок на номера </b>типа Люкс cоставляет {{lux}} , типа Стандарт составляет {{standart}}</p>
+{% endblock %}

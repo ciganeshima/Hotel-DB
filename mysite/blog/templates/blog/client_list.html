@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	   <div id="header"><a href="{% url 'client_new' %}" id="top-menu">Добавить клиента</a></div>
+	{% for client in clients %}
+        <div class="client">
+        	<h1><a href="{% url 'client_detail' pk=client.pk %}">{{ client.fio }}</a></h1>
+            <p>Номер телефона : {{client.telephone}}</p>
+        </div>
+        <a href="{% url 'client_detail' pk=client.pk %}">Reports: {{ client.comments.count }}</a>
+    {% endfor %}
+    <hr>
+    <p><b>Всего клиентов: </b>{{count_clients}} </p>
+{% endblock %}

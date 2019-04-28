@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+	<div id="header"><a href="{% url 'room_new' %}" id="top-menu">Добавить апартаменты</a>
+		<form method="get" action= "{% url 'search' %}">Поиск свободных номеров
+			<input type="text" name ="search">
+			<input type = "submit" value = "Search"></div>
+
+	{% for room in rooms %}
+        <div class="room">
+        	<h1><a href="{% url 'room_detail' pk=room.pk %}">{{ room.number }}</a></h1>
+            <p>Свободен : {{room.status}}</p>
+        </div>
+    {% endfor %}
+<hr>
+    <b>Информационная сводка :</b>
+    <p><b>Количество номеров </b>типа Люкс cоставляет {{lux}} , типа Стандарт составляет {{standart}}</p>
+    <p><b>Количество свободных</b> номеров в нашем отеле cоставляет {{free}} штук</p>
+    <p><b>Максимальная цена</b> в нашем отеле у номера : {{need.number}} и составляет {{need.price}} рублей</p>
+    <p><b>Минимальная цена</b> в нашем отеле у номера : {{minimum.number}} и составляет {{minimum.price}} рублей</p>
+    <p><b>Cредняя цена</b> номера в нашем отеле cоставляет {{average|floatformat}} рублей</p>
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="booking">
+        <h1>{{ booking.number }}</h1>
+        <p>Создано : {{ booking.created_date|linebreaksbr }}</p>
+        <p>Тип номера : {{ booking.book_room_type|linebreaksbr }}</p>
+        <p>Количество мест : {{ booking.book_room_places|linebreaksbr }}</p>
+        <p>Дата прибытия : {{ booking.arrival_date|linebreaksbr }}</p>
+        <p>Срок пребывания : {{ booking.tenure|linebreaksbr }}</p>
+        
+        <a class="btn btn-default" href="{% url 'booking_remove' pk=booking.pk %}">Удалить заявку</a>
+    </div>
+    	<a class="btn btn-default1" href="{% url 'booking_edit' pk=booking.pk %}">Редактировать заявку</a>
+    </div>
+{% endblock %}
