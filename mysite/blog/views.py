@@ -56,12 +56,11 @@ def room_list(request):
     need = Room.objects.get(price = max_price)
     min_price = Room.objects.all().aggregate(Min('price'))['price__min']
     minimum = Room.objects.get(price = min_price)
-    average = Room.objects.all().aggregate(Avg('price'))['price__avg']
     lux =  Room.objects.filter(room_type = 'Lux').count()
     standart = Room.objects.filter(room_type= 'Standart').count()
     free =  Room.objects.filter(status = 'Yes').count()
     rooms = Room.objects.order_by('number')
-    return render(request, 'blog/room_list.html', {'rooms':rooms, 'need' : need, 'minimum' : minimum, 'average' : average, 'free' : free, 'lux':lux, 'standart':standart} )
+    return render(request, 'blog/room_list.html', {'rooms':rooms, 'need' : need, 'minimum' : minimum, 'free' : free, 'lux':lux, 'standart':standart} )
 
 def room_detail(request, pk):
     room = get_object_or_404(Room, pk=pk)
